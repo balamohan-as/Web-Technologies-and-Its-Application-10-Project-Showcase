@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Airline Reservation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Airline Reservation System</h1>
+    </header>
+    
+    <main>
+        <section class="booking-form">
+            <h2>Book Your Flight</h2>
+            <form id="reservationForm">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="flight">Flight:</label>
+                <select id="flight" name="flight" required>
+                    <option value="101">Flight 101 - City A to City B</option>
+                    <option value="102">Flight 102 - City B to City C</option>
+                </select>
+
+                <label for="seat">Seat Number:</label>
+                <input type="text" id="seat" name="seat" required>
+
+                <button type="submit">Book Now</button>
+            </form>
+        </section>
+
+        <section id="confirmation" class="hidden">
+            <h2>Booking Confirmation</h2>
+            <p id="confirmationMessage"></p>
+            <button id="resetBtn">Book Another Ticket</button>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

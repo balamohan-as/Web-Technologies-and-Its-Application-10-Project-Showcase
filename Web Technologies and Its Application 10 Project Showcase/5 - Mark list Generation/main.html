@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Mark List Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Mark List Generator</h1>
+        <form id="markListForm">
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" required>
+
+            <label for="studentClass">Class:</label>
+            <input type="text" id="studentClass" required>
+
+            <label for="subject1">Subject 1:</label>
+            <input type="text" id="subject1Name" placeholder="Subject Name" required>
+            <input type="number" id="subject1Marks" placeholder="Marks" required>
+
+            <label for="subject2">Subject 2:</label>
+            <input type="text" id="subject2Name" placeholder="Subject Name" required>
+            <input type="number" id="subject2Marks" placeholder="Marks" required>
+
+            <label for="subject3">Subject 3:</label>
+            <input type="text" id="subject3Name" placeholder="Subject Name" required>
+            <input type="number" id="subject3Marks" placeholder="Marks" required>
+
+            <label for="subject4">Subject 4:</label>
+            <input type="text" id="subject4Name" placeholder="Subject Name" required>
+            <input type="number" id="subject4Marks" placeholder="Marks" required>
+
+            <label for="subject5">Subject 5:</label>
+            <input type="text" id="subject5Name" placeholder="Subject Name" required>
+            <input type="number" id="subject5Marks" placeholder="Marks" required>
+
+            <button type="button" onclick="generateMarkList()">Generate Mark List</button>
+        </form>
+
+        <div id="markListResult"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

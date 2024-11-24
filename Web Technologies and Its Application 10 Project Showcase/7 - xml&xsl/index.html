@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Marklist</title>
+</head>
+<body>
+    <center>
+        <h1>Student Marklist Display</h1>
+    </center>
+    <script>
+        // Load the XML document
+        let xmlDoc = new XMLHttpRequest();
+        xmlDoc.open("GET", "student.xml", false);
+        xmlDoc.send();
+
+        // Load the XSLT document
+        let xsltDoc = new XMLHttpRequest();
+        xsltDoc.open("GET", "student1.xsl", false);
+        xsltDoc.send();
+
+        let xml = xmlDoc.responseXML;
+        let xslt = xsltDoc.responseXML;
+
+        // Apply the XSLT transformation
+        let processor = new XSLTProcessor();
+        processor.importStylesheet(xslt);
+        let result = processor.transformToFragment(xml, document);
+        document.body.appendChild(result);
+    </script>
+</body>
+</html>

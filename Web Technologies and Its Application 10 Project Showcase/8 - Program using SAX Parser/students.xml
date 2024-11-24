@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<students>
+    <student>
+        <id>101</id>
+        <name>Bala Mohan</name>
+        <grade>A</grade>
+    </student>
+    <student>
+        <id>102</id>
+        <name>Sham</name>
+        <grade>B</grade>
+    </student>
+    <student>
+        <id>103</id>
+        <name>Nihil</name>
+        <grade>C</grade>
+    </student>
+    <student>
+        <id>104</id>
+        <name>Sabil</name>
+        <grade>D</grade>
+    </student>
+    <student>
+        <id>105</id>
+        <name>Esvinth</name>
+        <grade>A</grade>
+    </student>
+    <student>
+        <id>106</id>
+        <name>Naveen</name>
+        <grade>B</grade>
+    </student>
+</students>

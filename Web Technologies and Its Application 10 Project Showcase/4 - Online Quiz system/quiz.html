@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Quiz System</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.btn');
+    const submitBtn = document.getElementById('submit-btn');
+    const validationMessage = document.getElementById('validation-message');
+    const resultDiv = document.getElementById('result');
+
+    let selectedAnswers = {};
+
+    const correctAnswers = {
+        1: 'B',
+        2: 'A',
+        3: 'B',
+        4: 'A',
+        5: 'B'
+    };
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const questionId = button.parentElement.id.replace('answer-buttons', '');
+            selectedAnswers[questionId] = button.dataset.answer;
+
+            // Deselect other buttons for the same question
+            button.parentElement.querySelectorAll('.btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            button.classList.add('selected');
+        });
+    });
+
+    submitBtn.addEventListener('click', () => {
+        validationMessage.textContent = '';
+        resultDiv.innerHTML = '';  // Clear previous results
+
+        let score = 0;
+        let feedbackHtml = '';
+
+        for (let i = 1; i <= 5; i++) {
+            if (!selectedAnswers[i]) {
+                validationMessage.textContent = `Please answer question ${i}.`;
+                return;
+            }
+
+            const userAnswer = selectedAnswers[i];
+            const correctAnswer = correctAnswers[i];
+
+            if (userAnswer === correctAnswer) {
+                score++;
+                feedbackHtml += `<p>Question ${i}: Correct! The answer is '${getAnswerText(correctAnswer, i)}'.</p>`;
+            } else {
+                feedbackHtml += `<p>Question ${i}: Incorrect. The correct answer is '${getAnswerText(correctAnswer, i)}'. You selected '${getAnswerText(userAnswer, i)}'.</p>`;
+            }
+        }
+
+        resultDiv.innerHTML = feedbackHtml + `<p>Your score: ${score} out of 5</p>`;
+    });
+
+    function getAnswerText(answer, questionId) {
+        const answerTexts = {
+            1: { A: "Chat GPT 3", B: "Chat GPT 4", C: "Chat GPT 5", D: "Chat GPT 6" },
+            2: { A: "Deep Learning", B: "Rule-Based AI", C: "Reinforcement Learning", D: "Genetic Algorithms" },
+            3: { A: "2022", B: "2023", C: "2024", D: "2025" },
+            4: { A: "Improved Context Understanding", B: "Voice Recognition", C: "Image Processing", D: "Real-Time Translation" },
+            5: { A: "Google", B: "OpenAI", C: "Microsoft", D: "IBM" }
+        };
+
+        return answerTexts[questionId][answer] || answer;
+    }
+});
+
+    </script>
+</head>
+<body>
+    <div class="app">
+        <h1>Chat GPT Quiz</h1>
+        <form id="quiz-form">
+            <div class="quiz">
+                <h2 id="question1">1. What is the latest version of Chat GPT?</h2>
+                <div id="answer-buttons1">
+                    <button type="button" class="btn" data-answer="A">a. Chat GPT 3</button>
+                    <button type="button" class="btn" data-answer="B">b. Chat GPT 4</button>
+                    <button type="button" class="btn" data-answer="C">c. Chat GPT 5</button>
+                    <button type="button" class="btn" data-answer="D">d. Chat GPT 6</button>
+                </div>
+            </div>
+            <div class="quiz">
+                <h2 id="question2">2. What technology does Chat GPT primarily use?</h2>
+                <div id="answer-buttons2">
+                    <button type="button" class="btn" data-answer="A">a. Deep Learning</button>
+                    <button type="button" class="btn" data-answer="B">b. Rule-Based AI</button>
+                    <button type="button" class="btn" data-answer="C">c. Reinforcement Learning</button>
+                    <button type="button" class="btn" data-answer="D">d. Genetic Algorithms</button>
+                </div>
+            </div>
+            <div class="quiz">
+                <h2 id="question3">3. When was Chat GPT 4 released?</h2>
+                <div id="answer-buttons3">
+                    <button type="button" class="btn" data-answer="A">a.2022</button>
+                    <button type="button" class="btn" data-answer="B">b. 2023</button>
+                    <button type="button" class="btn" data-answer="C">c. 2024</button>
+                    <button type="button" class="btn" data-answer="D">d. 2025</button>
+                </div>
+            </div>
+            <div class="quiz">
+                <h2 id="question4">4. What is a key feature of Chat GPT 4?</h2>
+                <div id="answer-buttons4">
+                    <button type="button" class="btn" data-answer="A">a. Improved Context Understanding</button>
+                    <button type="button" class="btn" data-answer="B">b. Voice Recognition</button>
+                    <button type="button" class="btn" data-answer="C">c. Image Processing</button>
+                    <button type="button" class="btn" data-answer="D">d. Real-Time Translation</button>
+                </div>
+            </div>
+            <div class="quiz">
+                <h2 id="question5">5. Which company developed Chat GPT?</h2>
+                <div id="answer-buttons5">
+                    <button type="button" class="btn" data-answer="A">a. Google</button>
+                    <button type="button" class="btn" data-answer="B">b. OpenAI</button>
+                    <button type="button" class="btn" data-answer="C">c. Microsoft</button>
+                    <button type="button" class="btn" data-answer="D">d. IBM</button>
+                </div>
+            </div>
+            <center><button type="button" id="submit-btn">Submit</button></center>
+            <p id="validation-message" style="color: red;"></p>
+            <div id="result"></div>
+        </form>
+    </div>
+</body>
+</html>
